@@ -22,3 +22,4 @@ Opción alternativa (paquetes recientes)
     pip install pymongo
     pip install flask
     pip install requests
+    pip install pylint
