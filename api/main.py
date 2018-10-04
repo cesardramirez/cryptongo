@@ -1,11 +1,24 @@
 import pymongo
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-"""
-jsonify: convierte diccionarios de python al formato json
-"""
+
+@app.route("/")
+def index():
+    """
+    :return: Endpoints Cryptongo API
+    """
+
+    # jsonify: Convierte diccionarios de python al formato json.
+    return jsonify(
+        {
+            'name': 'Cryprongo API',
+            'endpoint_1': request.host_url,
+            'endpoint_2': request.host_url + 'top-rank-20'
+        }
+    )
+
 
 def get_db_connection(uri):
     """
@@ -41,6 +54,7 @@ def get_documents():
     return list(cursor)
 
 
+@app.route("/top-rank-20", methods=['GET'])
 def get_rank_top20():
     """
     Obtiene los documentos que tienen un ranking menor o igual a 20.
@@ -58,7 +72,7 @@ def get_rank_top20():
 
     cursor = db_connection.tickers.find(params, {'_id': 0, 'ticker_hash': 0}).limit(limit)
 
-    return list(cursor)
+    return jsonify(list(cursor))
 
 
 def remove_currency():

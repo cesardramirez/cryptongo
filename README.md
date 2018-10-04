@@ -31,3 +31,16 @@ Realizar backup a la Base de Datos
 Restaurar la Base de Datos
 
     mongorestore --host localhost --port 27017 ~/backup_mongodb/backup-2018-10-04
+    
+Ejecutar el proyecto
+
+>Por cada cambio en código se debe reiniciar el servidor.
+
+    export FLASK_APP=api/main.py
+    flask run
+
+## Herramientas y bibliografía
+
+* [Markown Live Preview](http://markdownlivepreview.com/)
+* [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
+* [Coin Market Cap API](https://coinmarketcap.com/api/)
