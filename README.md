@@ -23,3 +23,11 @@ Opción alternativa (paquetes recientes)
     pip install flask
     pip install requests
     pip install pylint
+
+Realizar backup a la Base de Datos
+
+    mongodump --host localhost --port 27017 --out ~/backup_mongodb/backup-2018-10-04/ --collection tickers --db cryptongo
+
+Restaurar la Base de Datos
+
+    mongorestore --host localhost --port 27017 ~/backup_mongodb/backup-2018-10-04
