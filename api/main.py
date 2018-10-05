@@ -14,8 +14,8 @@ def index():
     return jsonify(
         {
             'name': 'Cryprongo API',
-            'endpoint_1': request.host_url,
-            'endpoint_2': request.host_url + 'top-rank-20'
+            'index': request.host_url,
+            'endpoint_1': request.host_url + 'top-rank-20'
         }
     )
 
