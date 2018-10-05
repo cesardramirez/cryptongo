@@ -74,27 +74,26 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
 - Cuerpo:
   ```json
   {
-    "circulating_supply": 17305962,
-    "id": 1,
-    "last_updated": 1538734465,
-    "max_supply": 21000000,
-    "name": "Bitcoin",
+    "circulating_supply": 102378911,
+    "id": 1027,
+    "last_updated": 1538734480,
+    "max_supply": null,
+    "name": "Ethereum",
     "quotes": {
       "USD": {
-        "market_cap": 113713047606,
-        "percent_change_1h": 0.03,
-        "percent_change_24h": -0.22,
-        "percent_change_7d": -1.76,
-        "price": 6570.74409422,
-        "volume_24h": 3714071316.56283
+        "market_cap": 22675297167,
+        "percent_change_1h": 0.15,
+        "percent_change_24h": -1.07,
+        "percent_change_7d": -2.43,
+        "price": 221.484063947,
+        "volume_24h": 1478256834.01358
       }
     },
-    "rank": 1,
-    "symbol": "BTC",
-    "total_supply": 17305962,
-    "website_slug": "bitcoin"
+    "rank": 2,
+    "symbol": "ETH",
+    "total_supply": 102378911,
+    "website_slug": "ethereum"
   }
-
   ```
 - Respuestas:
   <pre>Status: 200 OK
