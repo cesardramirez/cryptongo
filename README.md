@@ -4,16 +4,16 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
 ## Endpoints
 
 ### Ticker
-`GET /top-rank-20`
-<br>Descripción: Obtiene los documentos que tienen un ranking menor o igual a 20.
+`GET /tickers`
+<br>Descripción: Obtiene todas las criptomonedas.
 - Parámetros opcionales:
-  <br>(str) name - Busca por el nombre específico de una criptomoneda.
+  <br>(string) name - Busca por el nombre específico de una criptomoneda.
   <br>(int) limit - Cantidad máxima de resultados.
 - Ejemplos:
-  <br>[http://127.0.0.1:5000/top-rank-20](http://127.0.0.1:5000/top-rank-20)
-  <br>[http://127.0.0.1:5000/top-rank-20?name=Bitcoin](http://127.0.0.1:5000/top-rank-20?name=Bitcoin)
-  <br>[http://127.0.0.1:5000/top-rank-20?limit=5](http://127.0.0.1:5000/top-rank-20?limit=5)
-  
+  <br>[http://127.0.0.1:5000/tickers](http://127.0.0.1:5000/tickers)
+  <br>[http://127.0.0.1:5000/tickers?name=Bitcoin](http://127.0.0.1:5000/tickers?name=Bitcoin)
+  <br>[http://127.0.0.1:5000/tickers?limit=10&name=Bitcoin](http://127.0.0.1:5000/tickers?limit=10&name=Bitcoin)
+
   Respuesta Simple:
   ```json
   [
@@ -40,7 +40,32 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
     }
   ]
   ```
-    
+
+`GET /top-rank-20`
+<br>Descripción: Obtiene las criptomonedas que tienen un ranking menor o igual a 20.
+- Parámetros opcionales:
+  <br>(string) name - Busca por el nombre específico de una criptomoneda.
+  <br>(int) limit - Cantidad máxima de resultados.
+- Ejemplos:
+  <br>[http://127.0.0.1:5000/top-rank-20](http://127.0.0.1:5000/top-rank-20)
+  <br>[http://127.0.0.1:5000/top-rank-20?name=Bitcoin](http://127.0.0.1:5000/top-rank-20?name=Bitcoin)
+  <br>[http://127.0.0.1:5000/top-rank-20?limit=5](http://127.0.0.1:5000/top-rank-20?limit=5)
+
+`DELETE /tickers?name=<nombre>`
+<br>Descripción: Elimina una criptomoneda según el nombre enviado.
+- Parámetros opcionales:
+  <br>(string) name - Busca por el nombre específico de una criptomoneda.
+- Ejemplos:
+  <br>[http://127.0.0.1:5000/tickers?name=Bitcoin](http://127.0.0.1:5000/tickers?name=Bitcoin)
+- Respuestas:
+  <pre>Status: 200 OK
+  { "number": 3, "text": "Documentos eliminados" }</pre>
+  <pre>Status: 404 NOT FOUND
+  { "error": "No se encontraron documentos" }
+  </pre>
+  <pre>Status: 400 BAD REQUEST`
+  { "error": "No se envío el parámetro name" }
+  </pre>
 
 ## Instalación y ejecución
 Ubuntu 16.x
@@ -50,6 +75,7 @@ Ubuntu 16.x
     sudo python3 ~/get-pip.py
     sudo apt-get install python3-venv
     git clone https://github.com/cesardramirez/cryptongo.git
+    cd cryptongo
     python3 -m venv venv
     source venv/bin/activate
     pip install --upgrade pip
@@ -92,4 +118,5 @@ Ejecutar el proyecto
 
 * [Markown Live Preview](http://markdownlivepreview.com/)
 * [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
-* [Coin Market Cap API](https://coinmarketcap.com/api/)
+* [API Coin Market Cap](https://coinmarketcap.com/api/)
+* [Wiki Cryptongo](https://github.com/cesardramirez/cryptongo/wiki/Wiki-Cryptongo)

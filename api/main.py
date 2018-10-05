@@ -15,7 +15,8 @@ def index():
         {
             'name': 'Cryprongo API',
             'index': request.host_url,
-            'endpoint_1': request.host_url + 'top-rank-20'
+            'endpoint_1': request.host_url + 'top-rank-20',
+            'endpoint_2': request.host_url + 'tickers'
         }
     )
 
@@ -34,6 +35,7 @@ def get_db_connection(uri):
 db_connection = get_db_connection('mongodb://localhost:27017/')
 
 
+@app.route('/tickers', methods=['GET'])
 def get_documents():
     """
     Obtiene todos los documentos de la coleccion de la BD.
@@ -51,7 +53,7 @@ def get_documents():
     # Se define que no se muestre los campos _id y ticker_hash.
     cursor = db_connection.tickers.find(params, {'_id': 0, 'ticker_hash': 0}).limit(limit)
 
-    return list(cursor)
+    return jsonify(list(cursor))
 
 
 @app.route("/top-rank-20", methods=['GET'])
@@ -75,6 +77,7 @@ def get_rank_top20():
     return jsonify(list(cursor))
 
 
+@app.route('/tickers', methods=['DELETE'])
 def remove_currency():
     """
     Eliminar uno o varios documentos de la coleccion según el nombre de la criptomoneda.
@@ -86,8 +89,17 @@ def remove_currency():
 
     if name:
         params.update({'name': name})
-    else:
-        # El método sin parámetros eliminaría todos los documentos, por lo cuál no se debe permitir.
-        return False
 
-    return db_connection.tickers.delete_many(params).deleted_count
+        number = db_connection.tickers.delete_many(params).deleted_count
+
+        if number > 0:
+            result = {'text': 'Documentos eliminados', 'number': number}
+            status = 200  # Ok
+        else:
+            result = {'error': 'No se encontraron documentos'}
+            status = 404  # Not Found
+    else:
+        result = {'error': 'No se envío el parámetro name'}
+        status = 400  # Bad Request
+
+    return jsonify(result), status
