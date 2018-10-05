@@ -130,11 +130,11 @@ Opción alternativa (paquetes recientes)
 
 Realizar backup a la Base de Datos
 
-    mongodump --host localhost --port 27017 --out ~/backup_mongodb/backup-2018-10-04/ --collection tickers --db cryptongo
+    mongodump --host localhost --port 27017 --out backup_bd/backup-2018-10-04 --collection tickers --db cryptongo
 
 Restaurar la Base de Datos
 
-    mongorestore --host localhost --port 27017 ~/backup_mongodb/backup-2018-10-04
+    mongorestore --host localhost --port 27017 backup_bd/backup-2018-10-04
 
 Insertar información reciente en la Base de Datos
 
