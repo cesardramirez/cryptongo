@@ -55,17 +55,55 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
 <br>Descripción: Elimina una criptomoneda según el nombre enviado.
 - Parámetros opcionales:
   <br>(string) name - Busca por el nombre específico de una criptomoneda.
-- Ejemplos:
+- Ejemplo:
   <br>[http://127.0.0.1:5000/tickers?name=Bitcoin](http://127.0.0.1:5000/tickers?name=Bitcoin)
 - Respuestas:
   <pre>Status: 200 OK
-  { "number": 3, "text": "Documentos eliminados" }</pre>
+  { "message": "Documentos eliminados", "number": 3 }</pre>
   <pre>Status: 404 NOT FOUND
   { "error": "No se encontraron documentos" }
   </pre>
-  <pre>Status: 400 BAD REQUEST`
+  <pre>Status: 400 BAD REQUEST
   { "error": "No se envío el parámetro name" }
   </pre>
+
+`POST /tickers`
+<br>Descripción: Inserta una criptomoneda.
+- Ejemplo:
+  <br>[http://127.0.0.1:5000/tickers](http://127.0.0.1:5000/tickers)
+- Cuerpo:
+  ```json
+  {
+    "circulating_supply": 17305962,
+    "id": 1,
+    "last_updated": 1538734465,
+    "max_supply": 21000000,
+    "name": "Bitcoin",
+    "quotes": {
+      "USD": {
+        "market_cap": 113713047606,
+        "percent_change_1h": 0.03,
+        "percent_change_24h": -0.22,
+        "percent_change_7d": -1.76,
+        "price": 6570.74409422,
+        "volume_24h": 3714071316.56283
+      }
+    },
+    "rank": 1,
+    "symbol": "BTC",
+    "total_supply": 17305962,
+    "website_slug": "bitcoin"
+  }
+
+  ```
+- Respuestas:
+  <pre>Status: 200 OK
+  { "message": "Documento almacenado exitosamente" }</pre>
+  <pre>Status: 404 BAD REQUEST
+  { "error": "El documento ya existe" }
+  { "error": "No se envío información en el body" }
+  </pre>
+
 
 ## Instalación y ejecución
 Ubuntu 16.x
@@ -117,6 +155,7 @@ Ejecutar el proyecto
 ## Herramientas y bibliografía
 
 * [Markown Live Preview](http://markdownlivepreview.com/)
+* [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 * [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 * [API Coin Market Cap](https://coinmarketcap.com/api/)
 * [Wiki Cryptongo](https://github.com/cesardramirez/cryptongo/wiki/Wiki-Cryptongo)

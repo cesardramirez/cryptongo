@@ -1,5 +1,8 @@
 import pymongo
 from flask import Flask, request, jsonify
+from werkzeug.exceptions import BadRequest
+
+from agent import main as agent
 
 app = Flask(__name__)
 
@@ -93,13 +96,27 @@ def remove_currency():
         number = db_connection.tickers.delete_many(params).deleted_count
 
         if number > 0:
-            result = {'text': 'Documentos eliminados', 'number': number}
-            status = 200  # Ok
+            message = 'Documentos eliminados'
+            return jsonify(message=message, number=number), 200  # Ok
         else:
-            result = {'error': 'No se encontraron documentos'}
-            status = 404  # Not Found
+            error = 'No se encontraron documentos'
+            return jsonify(error=error), 404  # Not Found
     else:
-        result = {'error': 'No se envío el parámetro name'}
-        status = 400  # Bad Request
+        error = 'No se envío el parámetro name'
+        return jsonify(error=error), 400  # Bad Request
 
-    return jsonify(result), status
+
+@app.route('/tickers', methods=['POST'])
+def add_currency():
+    try:
+        data_request = request.get_json()
+
+        if agent.save_ticker(db_connection, data_request):
+            message = 'Documento almacenado exitosamente'
+            return jsonify(message=message), 200
+        else:
+            error = 'El documento ya existe'
+            return jsonify(error=error), 400
+    except BadRequest:
+        error = 'No se envío información en el body'
+        return jsonify(error=error), 400
