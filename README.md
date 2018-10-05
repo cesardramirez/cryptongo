@@ -1,6 +1,47 @@
 ## Descripción
 Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
 
+## Endpoints
+
+### Ticker
+- `GET /top-rank-20`
+- Descripción: Obtiene los documentos que tienen un ranking menor o igual a 20.
+- Parámetros opcionales:
+  - (str) name - Busca por el nombre específico de una criptomoneda.
+  - (int) limit - Cantidad máxima de resultados.
+- Ejemplos:
+  <br>[http://127.0.0.1:5000/top-rank-20](http://127.0.0.1:5000/top-rank-20)
+  <br>[http://127.0.0.1:5000/top-rank-20?name=Bitcoin](http://127.0.0.1:5000/top-rank-20?name=Bitcoin)
+  <br>[http://127.0.0.1:5000/top-rank-20?limit=5](http://127.0.0.1:5000/top-rank-20?limit=5)
+  
+  Respuesta Simple:
+  ```json
+  [
+    {
+      "circulating_supply": 17304600,
+      "id": 1,
+      "last_updated": 1538666489,
+      "max_supply": 21000000,
+      "name": "Bitcoin",
+      "quotes": {
+      "USD": {
+        "market_cap": 113747701200,
+        "percent_change_1h": -0.02,
+        "percent_change_24h": 0.98,
+        "percent_change_7d": 0.62,
+        "price": 6573.26382583,
+        "volume_24h": 3827024537.65621
+      }
+    },
+    "rank": 1,
+    "symbol": "BTC",
+    "total_supply": 17304600,
+    "website_slug": "bitcoin"
+    }
+  ]
+  ```
+    
+
 ## Instalación y ejecución
 Ubuntu 16.x
 
