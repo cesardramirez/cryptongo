@@ -103,8 +103,16 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
   { "error": "No se envío información en el body" }
   </pre>
 
+## Docker - Instalación y ejecución
+> Revisar que hace cada instrucción en el archivo **Makefile**
 
-## Instalación y ejecución
+<br>`make get-images`
+<br>`make create-network`
+<br>`make start-development`
+<br>`make load-mongo`
+<br>`make stop-development`
+
+## Virtualenv - Instalación y ejecución
 Ubuntu 16.x
 
     python3 -V
@@ -136,9 +144,9 @@ Restaurar la Base de Datos
 
     mongorestore --host localhost --port 27017 backup_bd/backup-2018-10-04
 
-Insertar información reciente en la Base de Datos
+Insertar información reciente en la Base de Datos por medio de la API
 
-> Creará la colección insertando todas las criptomonedas existentes.
+> Creará la colección insertando todas las criptomonedas existentes de Coin Market Cap.
 > <br>Si existen cambios en los campos 'last_updated' y 'quotes', insertará el documento.
 
     source venv/bin/activate
