@@ -128,11 +128,12 @@ Proyecto hecho con Python (3.5.3) y MongoDB (4.0.3)
 <br>`docker exec -it crypto-agent-dev bash`
 - Eliminar los contenedores
 <br>`docker rm -f crypto-mongodb-dev crypto-agent-dev`
+<br>`docker rm -f $(docker ps -qa)`
 - Visualizar los logs de un servicio específico
 <br>`docker-compose logs agent`
 <br>`docker logs -f crypto-agent-dev`
 - Eliminar todas las imagenes
-<br>`docker rmi -f $(docker images -q)` 
+<br>`docker rmi -f $(docker images -q)`
 
 
 ## Virtualenv - Instalación y ejecución

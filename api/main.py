@@ -35,7 +35,7 @@ def get_db_connection(uri):
     return client.cryptongo
 
 
-db_connection = get_db_connection('mongodb://localhost:27017/')
+db_connection = get_db_connection('mongodb://crypto-mongodb-dev:27017/')
 
 
 @app.route('/tickers', methods=['GET'])

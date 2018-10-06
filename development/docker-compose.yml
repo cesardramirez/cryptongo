@@ -5,7 +5,7 @@ networks:
 services:
   # mongodb ------------------------------------------------
   mongodb:
-    image: mongo
+    image: mongo:4.0
     container_name: crypto-mongodb-dev
     volumes:
       - ../backup_bd:/backup_bd/
@@ -32,3 +32,22 @@ services:
       cryptongo:
         aliases:
           - ${AGENT_HOST}
+  # api ----------------------------------------------------
+  api:
+    image: api-dev
+    container_name: crypto-api-dev
+    command: /bin/sh -c "flask run --host=0.0.0.0"
+    environment:
+      - FLASK_APP=${FLASK_API_APP}
+      - FLASK_ENV=${FLASK_ENV}
+    volumes:
+      - ${LOCAL_SSH}/.ssh/id_rsa.pub:/tmp/authorized_keys:ro
+      - ../agent:/opt/app/agent
+      - ../api:/opt/app/
+    ports:
+      - "${API_SSH}:22"
+      - "${API_PORT}:${API_PORT}" 
+    networks:
+      cryptongo:
+        aliases:
+          - ${API_HOST}

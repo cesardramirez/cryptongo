@@ -10,12 +10,19 @@ create-network:
 
 # Construir las imagenes a partir del Dockerfile
 build-development:
+	# agent
 	cp requirements.txt development/build/agent/requirements.txt
 	cd development/build/agent/ && docker build -t "agent-dev" .
 	rm -f development/build/agent/requirements.txt
 
+	# api
+	cp requirements.txt development/build/api/requirements.txt
+	cd development/build/api/ && docker build -t "api-dev" .
+	rm -f development/build/api/requirements.txt
+
 # Crea e inicia los contenedores por medio del docker-compose.yml
 #  Si se hace cambios en el arhivo yml, recrea y vuelve a crear el contenedor.
+#  Si se comenta la linea de command, indica que se ejecutara el servicio por medio de Pycharm por SSH.
 start-development:
 	cd development && docker-compose up -d
 
@@ -30,4 +37,10 @@ clean-mongo:
 
 # Detiene todos los contenedores
 stop-development:
-	docker-compose stop
+	cd development && docker-compose stop
+
+api-logs-1:
+	docker logs -f crypto-api-dev
+
+api-logs-2:
+	cd development && docker-compose logs api
