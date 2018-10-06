@@ -1,5 +1,5 @@
 ## Descripción
-Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
+Proyecto hecho con Python (3.5.3) y MongoDB (4.0.3)
 
 ## Endpoints
 
@@ -104,13 +104,22 @@ Proyecto hecho con Python (3.5.2) y MongoDB (4.0.2)
   </pre>
 
 ## Docker - Instalación y ejecución
-> Revisar que hace cada instrucción en el archivo **Makefile**
+> Revisar que hace cada instrucción en el archivo [**Makefile**](https://github.com/cesardramirez/cryptongo/blob/master/Makefile)
 
+1. Obtener las imágenes necesarias de Docker Hub.
 <br>`make get-images`
+2. Crear la red.
 <br>`make create-network`
+3. Construir las imágenes por medio del Dockerfile
+<br>`make build-development`
+4. Crear e inicia los contenedores por medio del docker-compose.yml
 <br>`make start-development`
-<br>`make load-mongo`
+
+##### Opcional
+- Detiene los contenedores.
 <br>`make stop-development`
+- Restaura por medio del backup la BD de Mongo.
+<br>`make load-mongo`
 
 ## Virtualenv - Instalación y ejecución
 Ubuntu 16.x

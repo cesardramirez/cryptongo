@@ -6,9 +6,9 @@ services:
   # mongodb ------------------------------------------------
   mongodb:
     image: mongo
-    container_name: crypto-mongodb
+    container_name: crypto-mongodb-dev
     volumes:
-      - ./backup_bd/:/backup_bd/
+      - ./backup_bd:/backup_bd/
       - ~/mongo_db/data/db-cryptongo:/data/db/
     ports:
       - "${MONGODB_PORT}:${MONGODB_PORT}"
@@ -16,3 +16,19 @@ services:
       cryptongo:
         aliases:
           - ${MONGODB_HOST}
+  # agent --------------------------------------------------
+  agent:
+    image: agent-dev
+    container_name: crypto-agent-dev
+    command: /bin/sh -c "python3 main.py"
+    env_file:
+      - ./.env
+    volumes:
+      - ${LOCAL_SSH}/.ssh/id_rsa.pub:/tmp/authorized_keys:ro
+      - ./agent:/opt/app
+    ports:
+      - "${AGENT_SSH}:22"
+    networks:
+      cryptongo:
+        aliases:
+          - ${AGENT_HOST}

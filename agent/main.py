@@ -144,7 +144,7 @@ def save_ticker(db_connection, ticker_data=None):
 
 
 if __name__ == '__main__':
-    connection = get_db_connection('mongodb://localhost:27017/')
+    connection = get_db_connection('mongodb://crypto-mongodb-dev:27017/')
     num_cryptocurrencies = get_num_cryptocurrencies_from_api()
     print('\nCryptomonedas actuales en Coin Market Cap: {}'.format(num_cryptocurrencies))
 
