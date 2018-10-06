@@ -40,7 +40,7 @@ stop-development:
 	cd development && docker-compose stop
 
 api-logs-1:
-	docker logs -f crypto-api-dev
+	cd development && docker-compose logs api
 
 api-logs-2:
-	cd development && docker-compose logs api
+	docker logs -f crypto-api-dev
