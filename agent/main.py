@@ -144,6 +144,14 @@ def save_ticker(db_connection, ticker_data=None):
 
 
 if __name__ == '__main__':
+    """
+    Para crear la conexión ssh del contenedor de Docker,
+      es necesario que el programa inicialmente se este ejecutando contantemente.
+    import time
+    while True:
+        time.sleep(300)
+    """
+
     connection = get_db_connection('mongodb://crypto-mongodb-dev:27017/')
     num_cryptocurrencies = get_num_cryptocurrencies_from_api()
     print('\nCryptomonedas actuales en Coin Market Cap: {}'.format(num_cryptocurrencies))

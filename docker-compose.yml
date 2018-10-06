@@ -20,7 +20,7 @@ services:
   agent:
     image: agent-dev
     container_name: crypto-agent-dev
-    command: /bin/sh -c "python3 main.py"
+    #command: /bin/sh -c "python3 main.py"
     env_file:
       - ./.env
     volumes:
