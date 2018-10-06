@@ -103,6 +103,7 @@ Proyecto hecho con Python (3.5.3) y MongoDB (4.0.3)
   { "error": "No se envío información en el body" }
   </pre>
 
+
 ## Docker - Instalación y ejecución
 > Revisar que hace cada instrucción en el archivo [**Makefile**](https://github.com/cesardramirez/cryptongo/blob/master/Makefile)
 
@@ -115,11 +116,24 @@ Proyecto hecho con Python (3.5.3) y MongoDB (4.0.3)
 4. Crear e inicia los contenedores por medio del docker-compose.yml
 <br>`make start-development`
 
-##### Opcional
+#### Opcional
 - Detiene los contenedores.
 <br>`make stop-development`
 - Restaura por medio del backup la BD de Mongo.
 <br>`make load-mongo`
+
+### Comandos Docker
+- Ingresar a los contenedores
+<br>`docker exec -it crypto-mongodb-dev bash`
+<br>`docker exec -it crypto-agent-dev bash`
+- Eliminar los contenedores
+<br>`docker rm -f crypto-mongodb-dev crypto-agent-dev`
+- Visualizar los logs de un servicio específico
+<br>`docker-compose logs agent`
+<br>`docker logs -f crypto-agent-dev`
+- Eliminar todas las imagenes
+<br>`docker rmi -f $(docker images -q)` 
+
 
 ## Virtualenv - Instalación y ejecución
 Ubuntu 16.x
@@ -167,6 +181,7 @@ Ejecutar el proyecto
 
     export FLASK_APP=api/main.py
     flask run
+
 
 ## Herramientas y bibliografía
 
