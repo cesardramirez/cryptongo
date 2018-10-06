@@ -10,12 +10,14 @@ create-network:
 
 # Construir las imagenes a partir del Dockerfile
 build-development:
-	docker build -t "agent-dev" .
+	cp requirements.txt development/build/agent/requirements.txt
+	cd development/build/agent/ && docker build -t "agent-dev" .
+	rm -f development/build/agent/requirements.txt
 
 # Crea e inicia los contenedores por medio del docker-compose.yml
 #  Si se hace cambios en el arhivo yml, recrea y vuelve a crear el contenedor.
 start-development:
-	docker-compose up -d
+	cd development && docker-compose up -d
 
 # Carga la data de la BD de Mongo en su contenedor
 load-mongo:

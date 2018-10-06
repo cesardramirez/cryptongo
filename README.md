@@ -189,4 +189,4 @@ Ejecutar el proyecto
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 * [JSON Formatter Chrome Extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 * [API Coin Market Cap](https://coinmarketcap.com/api/)
-* [Wiki Cryptongo](https://github.com/cesardramirez/cryptongo/wiki/Wiki-Cryptongo)
+* [Wiki Cryptongo](https://github.com/cesardramirez/cryptongo/wiki)
